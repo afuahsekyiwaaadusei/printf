@@ -1,12 +1,26 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdio.h>
+
+
+/**
+ *_percent - 
+ *@f:
+ */
+
+void _percent(const char *f)
+{
+	
+}
+
 /**
  *_printf - function that  produces output according to a format.
  *@format: The format string is composed of zero or more directives.
  *
  *Return:integer(number of characters printed excluding \0)
  */
+
 int _printf(const char *format, ...)
 {
 	va_list arg;
@@ -19,8 +33,8 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			i = 1;
-			while (i <= 7)
+			format++;
+			while (i < 7)
 			{
 				if (format[i] == 'c')
 				{
@@ -28,7 +42,7 @@ int _printf(const char *format, ...)
 					write(1, &ch, 1);
 					i = 7;
 					count++;
-					format += 2;
+					format++;
 				}
 				if (format[i] == 's')
 				{
@@ -38,14 +52,15 @@ int _printf(const char *format, ...)
 						write(1, str + j, 1);
 						count += j;
 					}
-					format += 2;
+					i = 7;
+					format++;
 				}
 				if (format[i] == '%')
 				{
-					write(1, format + i, 1);
+					write(1, format, 1);
 					i = 7;
 					count++;
-					format += 2;
+					format++;
 				}
 				i++;
 			}
@@ -54,5 +69,6 @@ int _printf(const char *format, ...)
 		count++;
 		format++;
 	}
+	printf("%d", count);
 	return (count);
 }
