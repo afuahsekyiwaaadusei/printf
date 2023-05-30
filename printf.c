@@ -1,18 +1,6 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
-
-
-/**
- *_percent - 
- *@f:
- */
-
-void _percent(const char *f)
-{
-	
-}
 
 /**
  *_printf - function that  produces output according to a format.
@@ -20,7 +8,6 @@ void _percent(const char *f)
  *
  *Return:integer(number of characters printed excluding \0)
  */
-
 int _printf(const char *format, ...)
 {
 	va_list arg;
@@ -69,6 +56,5 @@ int _printf(const char *format, ...)
 		count++;
 		format++;
 	}
-	printf("%d", count);
 	return (count);
 }
