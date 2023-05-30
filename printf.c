@@ -40,6 +40,13 @@ int _printf(const char *format, ...)
 					}
 					format += 2;
 				}
+				if (format[i] == '%')
+				{
+					write(1, format + i, 1);
+					i = 7;
+					count++;
+					format += 2;
+				}
 				i++;
 			}
 		}
