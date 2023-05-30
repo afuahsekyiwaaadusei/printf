@@ -13,18 +13,20 @@ int _printf(const char *format, ...)
 {
 	va_list arg;
 	int count = 0, i = 0;
+	char ch;
 
-	va_star(arg, format);
+	va_start(arg, format);
 
 	while (*format != '\0')
 	{
-		if (*format == %)
+		if (*format == '%')
 		{
 			while (i <= 6)
 			{
 				if (*format == 'c')
 				{
-					write(1, &(va_arg(arg, char)), 1);
+					ch = va_arg(arg, int);
+					write(1, &ch, 1);
 					i = 7;
 					count++;
 					format++;
@@ -38,4 +40,7 @@ int _printf(const char *format, ...)
 		count++;
 		format++;
 	}
+
+	return (count);
+
 }
