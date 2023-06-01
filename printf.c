@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == '%' && *(format + 1) == '%')
 			{
-				_func(format, 1, &count);		
+				_func(format, 1, &count);
 				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) != '\0')
