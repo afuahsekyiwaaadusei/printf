@@ -49,22 +49,19 @@ int _printf(const char *format, ...)
 				{
 					for (j = 0; str[j] != '\0'; j++)
 					{
-						write(1, str + j, 1);
-						count++;
+						_func(str + j, 1, &count);
 					}
 				}
 				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) == '%')
 			{
-				write(1, format, 1);
-				count++;
+				_func(format, 1, &count);		
 				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) != '\0')
 			{
-				write(1, format, 1);
-				count++;
+				_func(format, 1, &count);
 				format++;
 			}
 			else
