@@ -1,12 +1,15 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
+
+int _func(const char *ptr, int l, int *ctr);
 /**
  *_printf - function that  produces output according to a format.
  *@format: The format string is composed of zero or more directives.
  *
  *Return:integer(number of characters printed excluding \0)
  */
+
 int _printf(const char *format, ...)
 {
 	va_list arg;
@@ -25,15 +28,13 @@ int _printf(const char *format, ...)
 		{
 			if (*format != '%')
 			{
-				write(1, format, 1);
-				count++;
+				_func(format, 1, &count);
 				format++;
 			}
 			else if (*format == '%' && *(format + 1) == 'c')
 			{
 				ch = va_arg(arg, int);
-				write(1, &ch, 1);
-				count++;
+				_func(&ch, 1, &count);
 				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) == 's')
@@ -41,7 +42,7 @@ int _printf(const char *format, ...)
 				str = va_arg(arg, char *);
 				if (str == NULL)
 				{
-					write(1,"(null)", 6);
+					write(1, "(null)", 6);
 					count += 6;
 				}
 				else
@@ -71,4 +72,18 @@ int _printf(const char *format, ...)
 		}
 	}
 	return (count);
+}
+
+/**
+ * _func- function to print letter
+ * @ptr:first param
+ * @l:second param
+ * @ctr: third param
+ * Return:int
+ */
+int _func(const char *ptr, int l, int *ctr)
+{
+	write(1, ptr, l);
+	*ctr = (*ctr) + l;
+	return (*ctr);
 }
