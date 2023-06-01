@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 				count++;
 				format += 2;
 			}
-			else if (*format == '%')
+			else if (*format == '%' && *(format + 1) != '\0')
 			{
 				write(1, format, 1);
 				count++;
