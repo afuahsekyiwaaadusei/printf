@@ -6,7 +6,7 @@
  *
  *Return: the length of integer.
  */
-int get_length(int num)
+int get_length(long int num)
 {
 	int i = 0;
 
@@ -40,7 +40,7 @@ int get_length(int num)
  *Return: 0 if successful
  */
 
-int intToString(int num, char *buf)
+int intToString(long int num, char *buf)
 {
 	int i = 0, start, end;
 	char tmp;
@@ -55,6 +55,7 @@ int intToString(int num, char *buf)
 		{
 			buf[i++] = '-';
 			num = -(num);
+			printf("in < 0 and buf is %s and num is %d",buf, num);
 		}
 		start = i;
 
@@ -74,6 +75,7 @@ int intToString(int num, char *buf)
 		}
 	}
 	buf[i] = '\0';
+	printf("in %s\n", buf);
 	return (0);
 }
 
