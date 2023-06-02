@@ -1,8 +1,8 @@
 #include "main.h"
 #include <unistd.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
-int _func(const char *ptr, int l, int *ctr);
 /**
  *_printf - function that  produces output according to a format.
  *@format: The format string is composed of zero or more directives.
@@ -13,9 +13,11 @@ int _func(const char *ptr, int l, int *ctr);
 int _printf(const char *format, ...)
 {
 	va_list arg;
-	int count = 0, j;
+	int count = 0, j, len;
+	long int num;
 	char ch;
 	char *str;
+	char *buf;
 
 	va_start(arg, format);
 	if (format == NULL)
@@ -57,6 +59,19 @@ int _printf(const char *format, ...)
 			else if (*format == '%' && *(format + 1) == '%')
 			{
 				_func(format, 1, &count);
+				format += 2;
+			}
+			else if (*format == '%' && (*(format + 1) == 'd' || *(format + 1) == 'i'))
+			{
+				num = va_arg(arg, long int);
+				len = get_length(num);
+				buf = malloc(sizeof(char) * len);
+				if (buf)
+				{
+					intToString(num, buf);
+					_func(buf, len - 1, &count);
+				}
+				free(buf);
 				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) != '\0')
