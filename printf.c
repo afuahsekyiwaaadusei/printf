@@ -66,13 +66,19 @@ int _printf(const char *format, ...)
 				num = va_arg(arg, long int);
 				len = get_length(num);
 				buf = malloc(sizeof(char) * len);
-				if (buf)
+				if (buf == NULL)
+				{
+					free(buf);
+					format += 2;
+					return (-1);
+				}
+				else
 				{
 					intToString(num, buf);
 					_func(buf, len - 1, &count);
+					free(buf);
+					format += 2;
 				}
-				free(buf);
-				format += 2;
 			}
 			else if (*format == '%' && *(format + 1) != '\0')
 			{

@@ -55,7 +55,6 @@ int intToString(long int num, char *buf)
 		{
 			buf[i++] = '-';
 			num = -(num);
-			printf("in < 0 and buf is %s and num is %d",buf, num);
 		}
 		start = i;
 
@@ -75,8 +74,7 @@ int intToString(long int num, char *buf)
 		}
 	}
 	buf[i] = '\0';
-	printf("in %s\n", buf);
-	return (0);
+	return (i);
 }
 
 
